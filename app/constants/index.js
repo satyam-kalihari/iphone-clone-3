@@ -21,7 +21,7 @@ export const hightlightsSlides = [
   {
     id: 2,
     textLists: ["Titanium.", "So strong. So light. So Pro."],
-    video: "/assets/videos/hightlight-sec.mp4",
+    video: "/assets/videos/hightlight-third.mp4",
     videoDuration: 5,
   },
   {
@@ -31,7 +31,7 @@ export const hightlightsSlides = [
       "longest optical zoom in",
       "iPhone ever. Far out.",
     ],
-    video: "/assets/videos/hightlight-third.mp4",
+    video: "/assets/videos/hightlight-sec.mp4",
     videoDuration: 2,
   },
   {

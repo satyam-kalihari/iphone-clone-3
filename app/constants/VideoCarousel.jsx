@@ -26,7 +26,7 @@ const VideoCarousel = () => {
   const { isEnd, startPlay, videoId, isLastVideo, isPlaying } = video;
 
   useGSAP(() => {
-    // slider animation to move the video out of the screen and bring the next video in
+    // slide animation to move the video out of the screen and bring the next video in
     gsap.to("#slider", {
       transform: `translateX(${-100 * videoId}%)`,
       duration: 2,
@@ -49,9 +49,7 @@ const VideoCarousel = () => {
     });
   }, [isEnd, videoId]);
 
-  console.log(loadedData.length);
   console.log(onloadedmetadata);
-
   useEffect(() => {
     if (loadedData.length > 3) {
       if (!isPlaying) {
@@ -65,16 +63,61 @@ const VideoCarousel = () => {
   const handleLoadedMetadata = (i, e) => setLoadedData((pre) => [...pre, e]);
 
   useEffect(() => {
-    const currentProgress = 0;
+    let currentProgress = 0;
     let span = videoSpanRef.current;
 
     if (span[videoId]) {
       //animate the progress bar
       let anim = gsap.to(span[videoId], {
-        onUpdate: () => {},
+        onUpdate: () => {
+          const progress = Math.ceil(anim.progress() * 100);
 
-        onComplete: () => {},
+          if (progress !== currentProgress) {
+            currentProgress = progress;
+
+            //to set the width of the progress bar
+            gsap.to(videoDivRef.current[videoId], {
+              width: window.innerWidth < 1200 ? "10vw" : "4vw",
+            });
+
+            //to set the background colour of the progress bar
+            gsap.to(span[videoId], {
+              width: `${currentProgress}%`,
+              backgroundColor: "white",
+            });
+          }
+        },
+
+        // when the video is ended, replace the progress bar with the indicator and change the background color
+        onComplete: () => {
+          if (isPlaying) {
+            gsap.to(videoDivRef.current[videoId], {
+              width: "12px",
+            });
+            gsap.to(span[videoId], {
+              backgroundColor: "#afafaf",
+            });
+          }
+        },
       });
+
+      if (videoId == 0) {
+        anim.restart();
+      }
+
+      //update the progress bar
+      const animUpdate = () => {
+        anim.progress(videoRef.current[videoId].currentTime /
+          hightlightsSlides[videoId].videoDuration);
+      };
+
+      if (isPlaying) {
+        // ticker to update the progress bar
+        gsap.ticker.add(animUpdate);
+      } else {
+        // remove the ticker when the video is paused (progress bar is stopped)
+        gsap.ticker.remove(animUpdate);
+      }
     }
   }, [videoId, startPlay]);
 

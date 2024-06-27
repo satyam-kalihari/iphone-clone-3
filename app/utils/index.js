@@ -16,7 +16,7 @@ export const heroImg = hero;
 // import exploremv from "/public/assets/videos/explore.mp4";
 // import framemv from "/public/assets/videos/frame.mp4";
 
-import apple from "/public/assets/images/apple.svg";
+// import apple from "/public/assets/images/apple.svg";
 import search from "/public/assets/images/search.svg";
 import bag from "/public/assets/images/bag.svg";
 import watch from "/public/assets/images/watch.svg";
@@ -43,7 +43,7 @@ import frame from "/public/assets/images/frame.png";
 // export const exploreVideo = exploremv;
 // export const frameVideo = framemv;
 
-export const appleImg = apple;
+// export const appleImg = apple;
 export const searchImg = search;
 export const bagImg = bag;
 export const watchImg = watch;

@@ -1,17 +1,17 @@
 import Image from "next/image";
 
-import Navbar from "./constants/Navbar";
-import Hero from "./constants/Hero";
-import Highlights from "./constants/Highlights";
-import Model from "./constants/Model";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Highlights from "./components/Highlights";
+import Model from "./components/Model";
 
 export default function Home() {
   return (
-  <main>
-    <Navbar />
-    <Hero />
-    <Highlights />
-    <Model />
-  </main>
-  )
+    <main>
+      <Navbar />
+      <Hero />
+      <Highlights />
+      <Model />
+    </main>
+  );
 }
